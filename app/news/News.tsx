@@ -25,7 +25,7 @@ async function NewsList() {
             {
                 news.map((leaf) => (
                     <p key={leaf.id}>
-                        {leaf.id}
+                        <Link href={`/news/${leaf.id}`}>Article: {leaf.id}</Link>
                     </p>
                 ))
             }
