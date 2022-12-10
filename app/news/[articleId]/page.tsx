@@ -23,7 +23,7 @@ const fetchArticle = async (articleId: string) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        next: { revalidate: 60 },
+        cache:'force-cache',
     });
     const news = await response.json();
     return news;
@@ -42,23 +42,4 @@ async function ArticlePage({ params: { articleId } }: PageProps) {
 
 }
 
-export default ArticlePage
-
-export async function generateStaticParams() {
-    const fetchNews = async (): Promise<Array<Leaf> | undefined> => {
-        try {
-            const response = await fetch('http://167.172.142.105:5000/cassandra-leaves');
-            const json = await response.json();
-            const news = json as Array<Leaf>;
-            return news.map(article => ({
-                id: article.id,
-                // Add other required properties here
-                title: article.title,
-                // ...
-            }));
-        } catch (err) {
-            console.error(err);
-            return undefined;
-        }
-    };
-}
+export default ArticlePage;
