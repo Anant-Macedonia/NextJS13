@@ -1,9 +1,12 @@
 import React from 'react'
+import NewsList from './News'
+
 
 function News(){
     return(
         <div >
-            News
+            {/* @ts-ignore */}
+           <NewsList />
         </div>
     )
 
